@@ -6,16 +6,36 @@ const initialState = {
 }
 //Reducer
 const rootReducer = (state = initialState, action) => {
-  state.counter++;
-  return state;
+  switch (action.type) {
+    case 'INCREMENT':
+      return  Object.assign({},state,{
+        counter: state.counter+1
+      });
+    case 'INCREMENT_BY':
+      return  Object.assign({},state,{
+        counter: state.counter+action.value
+      });
+    default:
+     return state;
+  }
 };
+
 
 //Store
 const store = createStore(rootReducer);
 console.log(store.getState());
 
-//Dispatching Action
-
 
 //Subscription
+store.subscribe(() => {
+  console.log('[Subscription]', store.getState());
+});
+
+
+//Dispatching Action
+store.dispatch({type:'INCREMENT'});
+store.dispatch({type:'INCREMENT_BY', value:4});
+store.dispatch({type:'INCREMENT_BY', value:6});
+
+
 
