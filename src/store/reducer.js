@@ -3,7 +3,18 @@ const initialState = {
 }
 
 const reducer = (state=initialState,action) => {
-  return state;
+  switch (action.type) {
+    case 'INCREMENT':
+      return  Object.assign({},state,{
+        counter: state.counter+1
+      });
+    case 'INCREMENT_BY':
+      return  Object.assign({},state,{
+        counter: state.counter+action.value
+      });
+    default:
+     return state;
+  }
 };
 
 export default reducer;
