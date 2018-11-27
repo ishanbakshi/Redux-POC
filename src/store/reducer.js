@@ -8,9 +8,9 @@ const reducer = (state=initialState,action) => {
       return  Object.assign({},state,{
         counter: state.counter+1
       });
-    case 'INCREMENT_BY':
+    case 'DECREMENT':
       return  Object.assign({},state,{
-        counter: state.counter+action.value
+        counter: state.counter-1
       });
     default:
      return state;
